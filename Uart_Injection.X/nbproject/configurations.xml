@@ -5,11 +5,11 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>common/console.h</itemPath>
-      <itemPath>generator.h</itemPath>
       <itemPath>common/Tick.h</itemPath>
       <itemPath>common/GenericTypeDefs.h</itemPath>
       <itemPath>common/pic24_generic.h</itemPath>
       <itemPath>initBoard.h</itemPath>
+      <itemPath>fsm.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -19,10 +19,10 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>common/console.c</itemPath>
-      <itemPath>generator.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>common/Tick.c</itemPath>
       <itemPath>initBoard.c</itemPath>
+      <itemPath>fsm.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

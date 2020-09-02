@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=common/console.c generator.c main.c common/Tick.c initBoard.c
+SOURCEFILES_QUOTED_IF_SPACED=common/console.c main.c common/Tick.c initBoard.c fsm.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/common/console.o ${OBJECTDIR}/generator.o ${OBJECTDIR}/main.o ${OBJECTDIR}/common/Tick.o ${OBJECTDIR}/initBoard.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/common/console.o.d ${OBJECTDIR}/generator.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/common/Tick.o.d ${OBJECTDIR}/initBoard.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/common/console.o ${OBJECTDIR}/main.o ${OBJECTDIR}/common/Tick.o ${OBJECTDIR}/initBoard.o ${OBJECTDIR}/fsm.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/common/console.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/common/Tick.o.d ${OBJECTDIR}/initBoard.o.d ${OBJECTDIR}/fsm.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/common/console.o ${OBJECTDIR}/generator.o ${OBJECTDIR}/main.o ${OBJECTDIR}/common/Tick.o ${OBJECTDIR}/initBoard.o
+OBJECTFILES=${OBJECTDIR}/common/console.o ${OBJECTDIR}/main.o ${OBJECTDIR}/common/Tick.o ${OBJECTDIR}/initBoard.o ${OBJECTDIR}/fsm.o
 
 # Source Files
-SOURCEFILES=common/console.c generator.c main.c common/Tick.c initBoard.c
+SOURCEFILES=common/console.c main.c common/Tick.c initBoard.c fsm.c
 
 
 CFLAGS=
@@ -101,13 +101,6 @@ ${OBJECTDIR}/common/console.o: common/console.c  nbproject/Makefile-${CND_CONF}.
 	${MP_CC} $(MP_EXTRA_CC_PRE)  common/console.c  -o ${OBJECTDIR}/common/console.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/common/console.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/common/console.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
-${OBJECTDIR}/generator.o: generator.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/generator.o.d 
-	@${RM} ${OBJECTDIR}/generator.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  generator.c  -o ${OBJECTDIR}/generator.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/generator.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/generator.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
@@ -129,6 +122,13 @@ ${OBJECTDIR}/initBoard.o: initBoard.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  initBoard.c  -o ${OBJECTDIR}/initBoard.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/initBoard.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/initBoard.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/fsm.o: fsm.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/fsm.o.d 
+	@${RM} ${OBJECTDIR}/fsm.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  fsm.c  -o ${OBJECTDIR}/fsm.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/fsm.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/fsm.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
 ${OBJECTDIR}/common/console.o: common/console.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/common" 
@@ -136,13 +136,6 @@ ${OBJECTDIR}/common/console.o: common/console.c  nbproject/Makefile-${CND_CONF}.
 	@${RM} ${OBJECTDIR}/common/console.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  common/console.c  -o ${OBJECTDIR}/common/console.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/common/console.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/common/console.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/generator.o: generator.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/generator.o.d 
-	@${RM} ${OBJECTDIR}/generator.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  generator.c  -o ${OBJECTDIR}/generator.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/generator.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/generator.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -164,6 +157,13 @@ ${OBJECTDIR}/initBoard.o: initBoard.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/initBoard.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  initBoard.c  -o ${OBJECTDIR}/initBoard.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/initBoard.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/initBoard.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/fsm.o: fsm.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/fsm.o.d 
+	@${RM} ${OBJECTDIR}/fsm.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  fsm.c  -o ${OBJECTDIR}/fsm.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/fsm.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/fsm.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

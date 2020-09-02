@@ -40,9 +40,10 @@ void OSCILLATOR_Initialize(void)
 }
 
 void initIO(void){
-    _TRISA6 =0; // LED D9
-    _TRISA5 =0; // LED D8
-    _TRISD1=0;  //pin 76 generator output 
+    _TRISA6 =0; // LED2
+    _TRISA5 =0; // LED1
+    _TRISD0=1;  //PB1
+    _TRISD1=1;  //PB2 
    // _TRISG8 =1; // input CN10 on RG8
 }
 

@@ -22,10 +22,10 @@ Command:
   -Lc:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib/dsPIC33F \
   -Lc:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../support/dsPIC33F/gld \
   build/default/production/common/console.o \
-  build/default/production/generator.o \
   build/default/production/main.o \
   build/default/production/common/Tick.o \
   build/default/production/initBoard.o \
+  build/default/production/fsm.o \
   --defsym=__MPLAB_BUILD=1 \
   -Tp24FJ128GA010.gld.00 \
   --stack=16 \
@@ -75,12 +75,13 @@ Program Memory  [Origin = 0x200, Length = 0x155fc]
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200               0x3c0           0x5a0  (1440)
-.const                       0x5c0                0x16            0x21  (33)
-.text                        0x5d6               0x752           0xafb  (2811)
-.dinit                       0xd28                0x14            0x1e  (30)
+.text                        0x200               0x346           0x4e9  (1257)
+.const                       0x546                0x18            0x24  (36)
+.text                        0x55e               0x684           0x9c6  (2502)
+.dinit                       0xbe2                0x1a            0x27  (39)
+.text                        0xbfc                0x12            0x1b  (27)
 
-                 Total program memory used (bytes):         0x10da  (4314) 3%
+                 Total program memory used (bytes):          0xf15  (3861) 2%
 
 
 Ivt Memory  [Origin = 0x4, Length = 0xfc]
@@ -88,17 +89,16 @@ Ivt Memory  [Origin = 0x4, Length = 0xfc]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .ivt._T1Interrupt             0x1a                 0x2             0x3  (3)
-.ivt._T3Interrupt             0x24                 0x2             0x3  (3)
 
 
 Data Memory  [Origin = 0x800, Length = 0x2000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.nbss                        0x800                   0             0x8  (8)
-.bss                         0x808                   0             0x6  (6)
+.nbss                        0x800                   0             0xe  (14)
+.bss                         0x80e                   0             0x6  (6)
 
-                 Total data memory used (bytes):            0xe  (14) <1%
+                 Total data memory used (bytes):           0x14  (20) <1%
 
 
 Dynamic Memory Usage
@@ -106,18 +106,18 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x80e                              0x1ff2  (8178)
+stack                        0x814                              0x1fec  (8172)
 
-                 Maximum dynamic memory (bytes):         0x1ff2  (8178)
+                 Maximum dynamic memory (bytes):         0x1fec  (8172)
 
 
 External Symbols in Data Memory (by address):
 
-                    0x0800                  __uLCDloops
+                    0x0806                  __uLCDloops
 
 External Symbols in Data Memory (by name):
 
-                    0x0800                  __uLCDloops
+                    0x0806                  __uLCDloops
 
 External Symbols in Program Memory (by address):
 
@@ -125,111 +125,107 @@ External Symbols in Program Memory (by address):
                   0x00023c                  __psv_init
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
-                  0x0002c8                  __T3Interrupt
-                  0x0002ec                  _initT3_3kHz
-                  0x000316                  _initT3_50Hz
-                  0x000342                  __DefaultInterrupt
-                  0x000346                  _write
-                  0x00036e                  _PMPClose
-                  0x000376                  _PMPOpen
-                  0x0003aa                  _PMPSetAddress
-                  0x0003fc                  ___udivmoddi3
-                  0x0004e2                  ___udivdi3
-                  0x0004f0                  ___umoddi3
-                  0x0004f8                  ___divdi3
-                  0x000558                  ___moddi3
-                  0x0005b4                  _strlen
-                  0x000602                  _LCDInit
-                  0x000864                  _initUart2
-                  0x00087a                  _initUart2_wInt
-                  0x00089a                  _putc2
-                  0x0008c0                  _putc2_noHard
-                  0x0008da                  _getc2
-                  0x0008f0                  _puts2
-                  0x000916                  _outUint8
-                  0x00095a                  _putI8
-                  0x00099e                  _UART2_is_tx_ready
-                  0x0009c0                  _UART2_is_rx_ready
-                  0x0009d8                  _UART2_is_tx_done
-                  0x0009f0                  _UART2_Read
-                  0x000a0e                  _UART2_Write
-                  0x000a26                  _UART2_StatusGet
-                  0x000a2e                  _UART1_Initialize
-                  0x000a42                  _initUart1
-                  0x000a4a                  _UART1_Read
-                  0x000a68                  _UART1_Write
-                  0x000a80                  _UART1_IsRxReady
-                  0x000a98                  _UART1_IsTxReady
-                  0x000aba                  _UART1_IsTxDone
-                  0x000ad2                  _UART1_StatusGet
-                  0x000ada                  _UART1_Enable
-                  0x000ae4                  _UART1_Disable
-                  0x000aee                  _fprintf2
-                  0x000b90                  _TickInit
-                  0x000c0c                  _TickGet
-                  0x000c18                  _TickGetDiv256
-                  0x000c48                  _TickGetDiv64K
-                  0x000c78                  _TickConvertToMilliseconds
-                  0x000c9c                  __T1Interrupt
-                  0x000cb4                  _main
-                  0x000d02                  _OSCILLATOR_Initialize
-                  0x000d1c                  _initIO
+                  0x0002c8                  __DefaultInterrupt
+                  0x0002cc                  _write
+                  0x0002f4                  _PMPClose
+                  0x0002fc                  _PMPOpen
+                  0x000330                  _PMPSetAddress
+                  0x000382                  ___udivmoddi3
+                  0x000468                  ___udivdi3
+                  0x000476                  ___umoddi3
+                  0x00047e                  ___divdi3
+                  0x0004de                  ___moddi3
+                  0x00053a                  _strlen
+                  0x00058a                  _LCDInit
+                  0x000728                  _initUart2
+                  0x00073e                  _initUart2_wInt
+                  0x00075e                  _putc2
+                  0x000784                  _putc2_noHard
+                  0x00079e                  _getc2
+                  0x0007b4                  _puts2
+                  0x0007da                  _outUint8
+                  0x00081e                  _putI8
+                  0x000862                  _UART2_is_tx_ready
+                  0x000884                  _UART2_is_rx_ready
+                  0x00089c                  _UART2_is_tx_done
+                  0x0008b4                  _UART2_Read
+                  0x0008d2                  _UART2_Write
+                  0x0008ea                  _UART2_StatusGet
+                  0x0008f2                  _UART1_Initialize
+                  0x000906                  _initUart1
+                  0x00090e                  _UART1_Read
+                  0x00092c                  _UART1_Write
+                  0x000944                  _UART1_IsRxReady
+                  0x00095c                  _UART1_IsTxReady
+                  0x00097e                  _UART1_IsTxDone
+                  0x000996                  _UART1_StatusGet
+                  0x00099e                  _UART1_Enable
+                  0x0009a8                  _UART1_Disable
+                  0x0009b2                  _fprintf2
+                  0x000a54                  _TickInit
+                  0x000ad0                  _TickGet
+                  0x000adc                  _TickGetDiv256
+                  0x000b0c                  _TickGetDiv64K
+                  0x000b3c                  _TickConvertToMilliseconds
+                  0x000b60                  __T1Interrupt
+                  0x000b78                  _task1
+                  0x000bba                  _OSCILLATOR_Initialize
+                  0x000bd4                  _initIO
+                  0x000bfc                  _main
 
 External Symbols in Program Memory (by name):
 
-                  0x000602                  _LCDInit
-                  0x000d02                  _OSCILLATOR_Initialize
-                  0x00036e                  _PMPClose
-                  0x000376                  _PMPOpen
-                  0x0003aa                  _PMPSetAddress
-                  0x000c78                  _TickConvertToMilliseconds
-                  0x000c0c                  _TickGet
-                  0x000c18                  _TickGetDiv256
-                  0x000c48                  _TickGetDiv64K
-                  0x000b90                  _TickInit
-                  0x000ae4                  _UART1_Disable
-                  0x000ada                  _UART1_Enable
-                  0x000a2e                  _UART1_Initialize
-                  0x000a80                  _UART1_IsRxReady
-                  0x000aba                  _UART1_IsTxDone
-                  0x000a98                  _UART1_IsTxReady
-                  0x000a4a                  _UART1_Read
-                  0x000ad2                  _UART1_StatusGet
-                  0x000a68                  _UART1_Write
-                  0x0009f0                  _UART2_Read
-                  0x000a26                  _UART2_StatusGet
-                  0x000a0e                  _UART2_Write
-                  0x0009c0                  _UART2_is_rx_ready
-                  0x0009d8                  _UART2_is_tx_done
-                  0x00099e                  _UART2_is_tx_ready
-                  0x000342                  __DefaultInterrupt
-                  0x000c9c                  __T1Interrupt
-                  0x0002c8                  __T3Interrupt
-                  0x0004f8                  ___divdi3
-                  0x000558                  ___moddi3
-                  0x0004e2                  ___udivdi3
-                  0x0003fc                  ___udivmoddi3
-                  0x0004f0                  ___umoddi3
+                  0x00058a                  _LCDInit
+                  0x000bba                  _OSCILLATOR_Initialize
+                  0x0002f4                  _PMPClose
+                  0x0002fc                  _PMPOpen
+                  0x000330                  _PMPSetAddress
+                  0x000b3c                  _TickConvertToMilliseconds
+                  0x000ad0                  _TickGet
+                  0x000adc                  _TickGetDiv256
+                  0x000b0c                  _TickGetDiv64K
+                  0x000a54                  _TickInit
+                  0x0009a8                  _UART1_Disable
+                  0x00099e                  _UART1_Enable
+                  0x0008f2                  _UART1_Initialize
+                  0x000944                  _UART1_IsRxReady
+                  0x00097e                  _UART1_IsTxDone
+                  0x00095c                  _UART1_IsTxReady
+                  0x00090e                  _UART1_Read
+                  0x000996                  _UART1_StatusGet
+                  0x00092c                  _UART1_Write
+                  0x0008b4                  _UART2_Read
+                  0x0008ea                  _UART2_StatusGet
+                  0x0008d2                  _UART2_Write
+                  0x000884                  _UART2_is_rx_ready
+                  0x00089c                  _UART2_is_tx_done
+                  0x000862                  _UART2_is_tx_ready
+                  0x0002c8                  __DefaultInterrupt
+                  0x000b60                  __T1Interrupt
+                  0x00047e                  ___divdi3
+                  0x0004de                  ___moddi3
+                  0x000468                  ___udivdi3
+                  0x000382                  ___udivmoddi3
+                  0x000476                  ___umoddi3
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000aee                  _fprintf2
-                  0x0008da                  _getc2
-                  0x000d1c                  _initIO
-                  0x0002ec                  _initT3_3kHz
-                  0x000316                  _initT3_50Hz
-                  0x000a42                  _initUart1
-                  0x000864                  _initUart2
-                  0x00087a                  _initUart2_wInt
-                  0x000cb4                  _main
-                  0x000916                  _outUint8
-                  0x00095a                  _putI8
-                  0x00089a                  _putc2
-                  0x0008c0                  _putc2_noHard
-                  0x0008f0                  _puts2
-                  0x0005b4                  _strlen
-                  0x000346                  _write
+                  0x0009b2                  _fprintf2
+                  0x00079e                  _getc2
+                  0x000bd4                  _initIO
+                  0x000906                  _initUart1
+                  0x000728                  _initUart2
+                  0x00073e                  _initUart2_wInt
+                  0x000bfc                  _main
+                  0x0007da                  _outUint8
+                  0x00081e                  _putI8
+                  0x00075e                  _putc2
+                  0x000784                  _putc2_noHard
+                  0x0007b4                  _puts2
+                  0x00053a                  _strlen
+                  0x000b78                  _task1
+                  0x0002cc                  _write
 
 Memory Configuration
 
@@ -247,10 +243,10 @@ CONFIG1          0x0157fe           0x000002
 Linker script and memory map
 
 LOAD build/default/production/common/console.o
-LOAD build/default/production/generator.o
 LOAD build/default/production/main.o
 LOAD build/default/production/common/Tick.o
 LOAD build/default/production/initBoard.o
+LOAD build/default/production/fsm.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib/PIC24F\libpPIC24Fxxx-elf.a
 LOAD c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libfx-elf.a
@@ -269,7 +265,7 @@ LOAD c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200        0x3c0
+.text             0x000200        0x346
  *(.init)
  .init            0x000200         0x4c c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
@@ -281,49 +277,45 @@ LOAD c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr.text        0x0002c8         0x7a build/default/production/generator.o
-                  0x0002c8                  __T3Interrupt
-                  0x0002ec                  _initT3_3kHz
-                  0x000316                  _initT3_50Hz
- .isr             0x000342          0x4 default_isr
-                  0x000342                  __DefaultInterrupt
+ .isr             0x0002c8          0x4 default_isr
+                  0x0002c8                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
- .libc.write      0x000346         0x28 build/default/production/common/console.o
-                  0x000346                  _write
- .libperi         0x00036e          0x8 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib/PIC24F\libpPIC24Fxxx-elf.a(PMPClose.o)
-                  0x00036e                  _PMPClose
- .libperi         0x000376         0x34 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib/PIC24F\libpPIC24Fxxx-elf.a(PMPOpen.o)
-                  0x000376                  _PMPOpen
- .libperi         0x0003aa          0x4 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib/PIC24F\libpPIC24Fxxx-elf.a(PMPSetAddress.o)
-                  0x0003aa                  _PMPSetAddress
+ .libc.write      0x0002cc         0x28 build/default/production/common/console.o
+                  0x0002cc                  _write
+ .libperi         0x0002f4          0x8 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib/PIC24F\libpPIC24Fxxx-elf.a(PMPClose.o)
+                  0x0002f4                  _PMPClose
+ .libperi         0x0002fc         0x34 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib/PIC24F\libpPIC24Fxxx-elf.a(PMPOpen.o)
+                  0x0002fc                  _PMPOpen
+ .libperi         0x000330          0x4 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib/PIC24F\libpPIC24Fxxx-elf.a(PMPSetAddress.o)
+                  0x000330                  _PMPSetAddress
  .libpic30_crt_start_mode
-                  0x0003ae          0x2 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
-                  0x0003ae                  __crt_start_mode
-                  0x0003ae                  __crt_start_mode_normal
+                  0x000334          0x2 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
+                  0x000334                  __crt_start_mode
+                  0x000334                  __crt_start_mode_normal
  .libm.__PplusBdi
-                  0x0003b0         0x26 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
+                  0x000336         0x26 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
  .libm.__PminusBdi
-                  0x0003d6         0x26 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
+                  0x00035c         0x26 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
  .libm.__udivmoddi3
-                  0x0003fc         0xe6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
-                  0x0003fc                  ___udivmoddi3
+                  0x000382         0xe6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
+                  0x000382                  ___udivmoddi3
  .libm.__udivdi3
-                  0x0004e2          0xe c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
-                  0x0004e2                  ___udivdi3
+                  0x000468          0xe c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
+                  0x000468                  ___udivdi3
  .libm.__umoddi3
-                  0x0004f0          0x8 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
-                  0x0004f0                  ___umoddi3
+                  0x000476          0x8 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
+                  0x000476                  ___umoddi3
  .libm.__divdi3
-                  0x0004f8         0x60 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
-                  0x0004f8                  ___divdi3
+                  0x00047e         0x60 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
+                  0x00047e                  ___divdi3
  .libm.__moddi3
-                  0x000558         0x5c c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
-                  0x000558                  ___moddi3
- .libc.strlen     0x0005b4          0xc c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-c-elf.a(strlen.XX_eo)
-                  0x0005b4                  _strlen
+                  0x0004de         0x5c c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
+                  0x0004de                  ___moddi3
+ .libc.strlen     0x00053a          0xc c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-c-elf.a(strlen.XX_eo)
+                  0x00053a                  _strlen
 
 usercode
  *(usercode)
@@ -337,46 +329,44 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x2fc3
+.debug_info       0x000000       0x265e
  *(.debug_info)
- .debug_info      0x000000       0x1651 build/default/production/common/console.o
- .debug_info      0x001651        0x85b build/default/production/generator.o
- .debug_info      0x001eac        0x353 build/default/production/main.o
- .debug_info      0x0021ff        0x8f4 build/default/production/common/Tick.o
- .debug_info      0x002af3        0x4d0 build/default/production/initBoard.o
+ .debug_info      0x000000       0x1547 build/default/production/common/console.o
+ .debug_info      0x001547        0x19d build/default/production/main.o
+ .debug_info      0x0016e4        0x8d7 build/default/production/common/Tick.o
+ .debug_info      0x001fbb        0x4b3 build/default/production/initBoard.o
+ .debug_info      0x00246e        0x1f0 build/default/production/fsm.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x62c
+.debug_abbrev     0x000000        0x50f
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x22a build/default/production/common/console.o
- .debug_abbrev    0x00022a         0xfa build/default/production/generator.o
- .debug_abbrev    0x000324         0xd1 build/default/production/main.o
- .debug_abbrev    0x0003f5        0x19c build/default/production/common/Tick.o
- .debug_abbrev    0x000591         0x9b build/default/production/initBoard.o
+ .debug_abbrev    0x000000        0x215 build/default/production/common/console.o
+ .debug_abbrev    0x000215         0x4e build/default/production/main.o
+ .debug_abbrev    0x000263        0x19c build/default/production/common/Tick.o
+ .debug_abbrev    0x0003ff         0x9b build/default/production/initBoard.o
+ .debug_abbrev    0x00049a         0x75 build/default/production/fsm.o
 
-.debug_line       0x000000        0x597
+.debug_line       0x000000        0x4a4
  *(.debug_line)
- .debug_line      0x000000        0x235 build/default/production/common/console.o
- .debug_line      0x000235         0xb2 build/default/production/generator.o
- .debug_line      0x0002e7         0xc8 build/default/production/main.o
- .debug_line      0x0003af         0xf4 build/default/production/common/Tick.o
- .debug_line      0x0004a3         0xf4 build/default/production/initBoard.o
+ .debug_line      0x000000        0x209 build/default/production/common/console.o
+ .debug_line      0x000209         0x4d build/default/production/main.o
+ .debug_line      0x000256         0xf4 build/default/production/common/Tick.o
+ .debug_line      0x00034a         0xf5 build/default/production/initBoard.o
+ .debug_line      0x00043f         0x65 build/default/production/fsm.o
 
-.debug_frame      0x000000        0x608
+.debug_frame      0x000000        0x558
  *(.debug_frame)
- .debug_frame     0x000000        0x43c build/default/production/common/console.o
- .debug_frame     0x00043c         0x70 build/default/production/generator.o
- .debug_frame     0x0004ac         0x30 build/default/production/main.o
- .debug_frame     0x0004dc         0xe0 build/default/production/common/Tick.o
- .debug_frame     0x0005bc         0x4c build/default/production/initBoard.o
+ .debug_frame     0x000000        0x3cc build/default/production/common/console.o
+ .debug_frame     0x0003cc         0x30 build/default/production/main.o
+ .debug_frame     0x0003fc         0xe0 build/default/production/common/Tick.o
+ .debug_frame     0x0004dc         0x4c build/default/production/initBoard.o
+ .debug_frame     0x000528         0x30 build/default/production/fsm.o
 
-.debug_str        0x000000         0xed
+.debug_str        0x000000         0xb6
  *(.debug_str)
  .debug_str       0x000000         0x7d build/default/production/common/console.o
- .debug_str       0x00007d         0x2e build/default/production/generator.o
- .debug_str       0x0000ab          0x9 build/default/production/main.o
- .debug_str       0x0000b4         0x25 build/default/production/common/Tick.o
- .debug_str       0x0000d9         0x14 build/default/production/initBoard.o
+ .debug_str       0x00007d         0x25 build/default/production/common/Tick.o
+ .debug_str       0x0000a2         0x14 build/default/production/initBoard.o
 
 .debug_loc
  *(.debug_loc)
@@ -385,18 +375,18 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x2e6
+                  0x000000        0x2bf
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000        0x1d3 build/default/production/common/console.o
  .debug_pubnames
-                  0x0001d3         0x43 build/default/production/generator.o
+                  0x0001d3         0x1b build/default/production/main.o
  .debug_pubnames
-                  0x000216         0x1b build/default/production/main.o
+                  0x0001ee         0x7e build/default/production/common/Tick.o
  .debug_pubnames
-                  0x000231         0x7e build/default/production/common/Tick.o
+                  0x00026c         0x37 build/default/production/initBoard.o
  .debug_pubnames
-                  0x0002af         0x37 build/default/production/initBoard.o
+                  0x0002a3         0x1c build/default/production/fsm.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -406,13 +396,13 @@ __CONFIG1
  .debug_aranges
                   0x000000         0x20 build/default/production/common/console.o
  .debug_aranges
-                  0x000020         0x18 build/default/production/generator.o
+                  0x000020         0x18 build/default/production/main.o
  .debug_aranges
-                  0x000038         0x18 build/default/production/main.o
+                  0x000038         0x18 build/default/production/common/Tick.o
  .debug_aranges
-                  0x000050         0x18 build/default/production/common/Tick.o
+                  0x000050         0x18 build/default/production/initBoard.o
  .debug_aranges
-                  0x000068         0x18 build/default/production/initBoard.o
+                  0x000068         0x18 build/default/production/fsm.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -995,57 +985,53 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000080        0x322
+                  0x000080        0x27c
  .debug_pubtypes
                   0x000080        0x13a build/default/production/common/console.o
  .debug_pubtypes
-                  0x0001ba         0xa5 build/default/production/generator.o
+                  0x0001ba         0x1c build/default/production/main.o
  .debug_pubtypes
-                  0x00025f         0x43 build/default/production/main.o
+                  0x0001d6         0xa4 build/default/production/common/Tick.o
  .debug_pubtypes
-                  0x0002a2         0xa4 build/default/production/common/Tick.o
+                  0x00027a         0x5c build/default/production/initBoard.o
  .debug_pubtypes
-                  0x000346         0x5c build/default/production/initBoard.o
+                  0x0002d6         0x26 build/default/production/fsm.o
 
 __c30_signature
-                  0x0003a2         0x48
+                  0x0002fc         0x48
  __c30_signature
-                  0x0003a2          0x6 build/default/production/common/console.o
+                  0x0002fc          0x6 build/default/production/common/console.o
  __c30_signature
-                  0x0003a8          0x6 build/default/production/generator.o
+                  0x000302          0x6 build/default/production/main.o
  __c30_signature
-                  0x0003ae          0x6 build/default/production/main.o
+                  0x000308          0x6 build/default/production/common/Tick.o
  __c30_signature
-                  0x0003b4          0x6 build/default/production/common/Tick.o
+                  0x00030e          0x6 build/default/production/initBoard.o
  __c30_signature
-                  0x0003ba          0x6 build/default/production/initBoard.o
+                  0x000314          0x6 build/default/production/fsm.o
  __c30_signature
-                  0x0003c0          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib/PIC24F\libpPIC24Fxxx-elf.a(PMPClose.o)
+                  0x00031a          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib/PIC24F\libpPIC24Fxxx-elf.a(PMPClose.o)
  __c30_signature
-                  0x0003c6          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib/PIC24F\libpPIC24Fxxx-elf.a(PMPOpen.o)
+                  0x000320          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib/PIC24F\libpPIC24Fxxx-elf.a(PMPOpen.o)
  __c30_signature
-                  0x0003cc          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib/PIC24F\libpPIC24Fxxx-elf.a(PMPSetAddress.o)
+                  0x000326          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib/PIC24F\libpPIC24Fxxx-elf.a(PMPSetAddress.o)
  __c30_signature
-                  0x0003d2          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+                  0x00032c          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x0003d8          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                  0x000332          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
  __c30_signature
-                  0x0003de          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
+                  0x000338          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
  __c30_signature
-                  0x0003e4          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-c-elf.a(strlen.XX_eo)
+                  0x00033e          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-c-elf.a(strlen.XX_eo)
 
-.nbss               0x0800          0x8
- .nbss              0x0800          0x4 build/default/production/common/console.o
-                    0x0800                  __uLCDloops
- .nbss              0x0804          0x4 build/default/production/common/Tick.o
+.nbss               0x0800          0xe
+ .nbss              0x0800          0x6 build/default/production/fsm.o
+ .nbss              0x0806          0x4 build/default/production/common/console.o
+                    0x0806                  __uLCDloops
+ .nbss              0x080a          0x4 build/default/production/common/Tick.o
 
-.bss                0x0808          0x6
- .bss               0x0808          0x6 build/default/production/common/Tick.o
-
-.ivt._T3Interrupt
-                  0x000024          0x2
- .ivt._T3Interrupt
-                  0x000024          0x2 build/default/production/generator.o
+.bss                0x080e          0x6
+ .bss               0x080e          0x6 build/default/production/common/Tick.o
 
 .ivt._T1Interrupt
                   0x00001a          0x2
@@ -1059,49 +1045,54 @@ __c30_signature
 .config_IESO      0x0157fc          0x2
  .config_IESO     0x0157fc          0x2 build/default/production/initBoard.o
 
-.const              0x85c0         0x16 load address 0x0005c0  
- .const             0x85c0         0x16 build/default/production/main.o
+.const              0x8546         0x18 load address 0x000546  
+ .const             0x8546          0xe build/default/production/main.o
+ .const             0x8554          0xa build/default/production/fsm.o
 
-.text             0x0005d6        0x752
- .text            0x0005d6        0x5ba build/default/production/common/console.o
-                  0x000602                  _LCDInit
-                  0x000864                  _initUart2
-                  0x00087a                  _initUart2_wInt
-                  0x00089a                  _putc2
-                  0x0008c0                  _putc2_noHard
-                  0x0008da                  _getc2
-                  0x0008f0                  _puts2
-                  0x000916                  _outUint8
-                  0x00095a                  _putI8
-                  0x00099e                  _UART2_is_tx_ready
-                  0x0009c0                  _UART2_is_rx_ready
-                  0x0009d8                  _UART2_is_tx_done
-                  0x0009f0                  _UART2_Read
-                  0x000a0e                  _UART2_Write
-                  0x000a26                  _UART2_StatusGet
-                  0x000a2e                  _UART1_Initialize
-                  0x000a42                  _initUart1
-                  0x000a4a                  _UART1_Read
-                  0x000a68                  _UART1_Write
-                  0x000a80                  _UART1_IsRxReady
-                  0x000a98                  _UART1_IsTxReady
-                  0x000aba                  _UART1_IsTxDone
-                  0x000ad2                  _UART1_StatusGet
-                  0x000ada                  _UART1_Enable
-                  0x000ae4                  _UART1_Disable
-                  0x000aee                  _fprintf2
- .text            0x000b90        0x124 build/default/production/common/Tick.o
-                  0x000b90                  _TickInit
-                  0x000c0c                  _TickGet
-                  0x000c18                  _TickGetDiv256
-                  0x000c48                  _TickGetDiv64K
-                  0x000c78                  _TickConvertToMilliseconds
-                  0x000c9c                  __T1Interrupt
- .text            0x000cb4         0x4e build/default/production/main.o
-                  0x000cb4                  _main
- .text            0x000d02         0x26 build/default/production/initBoard.o
-                  0x000d02                  _OSCILLATOR_Initialize
-                  0x000d1c                  _initIO
+.text             0x00055e        0x684
+ .text            0x00055e        0x4f6 build/default/production/common/console.o
+                  0x00058a                  _LCDInit
+                  0x000728                  _initUart2
+                  0x00073e                  _initUart2_wInt
+                  0x00075e                  _putc2
+                  0x000784                  _putc2_noHard
+                  0x00079e                  _getc2
+                  0x0007b4                  _puts2
+                  0x0007da                  _outUint8
+                  0x00081e                  _putI8
+                  0x000862                  _UART2_is_tx_ready
+                  0x000884                  _UART2_is_rx_ready
+                  0x00089c                  _UART2_is_tx_done
+                  0x0008b4                  _UART2_Read
+                  0x0008d2                  _UART2_Write
+                  0x0008ea                  _UART2_StatusGet
+                  0x0008f2                  _UART1_Initialize
+                  0x000906                  _initUart1
+                  0x00090e                  _UART1_Read
+                  0x00092c                  _UART1_Write
+                  0x000944                  _UART1_IsRxReady
+                  0x00095c                  _UART1_IsTxReady
+                  0x00097e                  _UART1_IsTxDone
+                  0x000996                  _UART1_StatusGet
+                  0x00099e                  _UART1_Enable
+                  0x0009a8                  _UART1_Disable
+                  0x0009b2                  _fprintf2
+ .text            0x000a54        0x124 build/default/production/common/Tick.o
+                  0x000a54                  _TickInit
+                  0x000ad0                  _TickGet
+                  0x000adc                  _TickGetDiv256
+                  0x000b0c                  _TickGetDiv64K
+                  0x000b3c                  _TickConvertToMilliseconds
+                  0x000b60                  __T1Interrupt
+ .text            0x000b78         0x42 build/default/production/fsm.o
+                  0x000b78                  _task1
+ .text            0x000bba         0x28 build/default/production/initBoard.o
+                  0x000bba                  _OSCILLATOR_Initialize
+                  0x000bd4                  _initIO
 
-.dinit            0x000d28         0x14
- .dinit           0x000d28         0x14 data_init
+.dinit            0x000be2         0x1a
+ .dinit           0x000be2         0x1a data_init
+
+.text             0x000bfc         0x12
+ .text            0x000bfc         0x12 build/default/production/main.o
+                  0x000bfc                  _main

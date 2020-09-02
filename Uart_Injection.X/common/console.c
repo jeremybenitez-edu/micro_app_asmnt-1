@@ -41,15 +41,13 @@ unsigned long _uLCDloops;
 static void Wait(unsigned int B);
 static void pmp_Init(void);
 
-static void LCDPos2(unsigned char row);
-static void LCDPos1(unsigned char row);
+
 static void LCDHome(void);
 static void LCDL1Home(void);
 static void LCDL2Home(void);
 static void LCDClear(void);
 static void LCDPut(char A);
-static void DisplayMSG (char *);
-static void LCDPutString( char *array);
+
 
 static void pmp_Init(void)
 {
@@ -196,28 +194,6 @@ static void Wait(unsigned int B)
 	B--;
 }
 
-/***************************************************************
-Name:	void DisplayMSG( char *array)
-Description: Dump a string to the current position. If it 
-				reaches the end of line1, it will continue on
-				line2.
-
-****************************************************************/
-static void DisplayMSG( char *array)
-{
-  unsigned char i=0,line=1;	
-	LCDL1Home();	
-	 while (*array)           // Continue display characters from STRING untill NULL character appears.
-	 {
-	  LCDPut(*array++);  // Display selected character from the STRING.
-	  if (i>19 && line==1)
-	  {
-	   LCDL2Home();
-	   line++;
-	  }
-	   i++;	        
-     }
-}
 
 /***************************************************************
 Name:	void LCDPutString( char *array)
@@ -225,50 +201,6 @@ Description: Dump a string to the current position. Does not take
 				into account the end of the line.
 
 ****************************************************************/
-static void LCDPutString( char *array)
-{
-	 while (*array)           // Continue display characters from STRING untill NULL character appears.
-	 {
-	  LCDPut(*array++);  // Display selected character from the STRING.
-     }
-}
-
-
-/***************************************************************
-Name:	void LCDPos2(unsigned char row)
-Description: Position the cursor to a specific position on line2.
-
-****************************************************************/
-static void LCDPos2(unsigned char row)
-{
-    unsigned char temp;
-	_uLCDloops = LCD_S_INSTR;
-//	PMADDR = 0x0000;
-    PMPSetAddress(0x0000); 
-  //  PMDIN1 = 0b11001010 ;
-    temp = 0b11000000 | row;
-	PMDIN1 = temp;
-	while(_uLCDloops)
-	_uLCDloops--;
-}
-
-/***************************************************************
-Name:	void LCDPos1(unsigned char row)
-Description: Position the cursor to a specific position on line1.
-
-****************************************************************/
-static void LCDPos1(unsigned char row)
-{
-    unsigned char temp;
-	_uLCDloops = LCD_S_INSTR;
-//	PMADDR = 0x0000;
-    PMPSetAddress(0x0000); 
-  //  PMDIN1 = 0b11001010 ;
-    temp = 0b10000000 | row;
-	PMDIN1 = temp;
-	while(_uLCDloops)
-	_uLCDloops--;
-}
 
 /*********** Uart2 section **************************************************/
 //
